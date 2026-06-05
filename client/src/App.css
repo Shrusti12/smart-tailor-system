@@ -1,0 +1,80 @@
+/* ===============================
+   SMART TAILOR GLOBAL THEME
+================================ */
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Page background */
+.page-bg {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8f9fc, #e3ebf7);
+  padding: 25px;
+}
+
+/* Main content card */
+.content-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Headings */
+.page-title {
+  color: #1d3557;
+  font-weight: 600;
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: #1d3557;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #16324f;
+}
+
+.btn-success {
+  background-color: #2a9d8f;
+  border: none;
+}
+
+.btn-success:hover {
+  background-color: #21867a;
+}
+
+/* Tables */
+.table th {
+  background-color: #f1f5fb;
+  color: #333;
+}
+
+/* Inputs */
+.form-control {
+  border-radius: 8px;
+}
+
+/* Small animation */
+button {
+  transition: all 0.25s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+/* PRINT SAFE */
+@media print {
+  .page-bg {
+    background: none !important;
+    padding: 0;
+  }
+  .content-card {
+    box-shadow: none;
+    border-radius: 0;
+  }
+}

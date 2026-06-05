@@ -1,0 +1,94 @@
+CREATE TABLE users (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(100),
+  mobile VARCHAR(15),
+  password VARCHAR(100),
+  role ENUM('admin','tailor','customer'),
+  address VARCHAR(200),
+  created_at DATETIME DEFAULT NOW()
+);
+
+INSERT INTO users (name, mobile, password, role, address)
+VALUES ('admin', 'admin', 'admin', 'admin', 'bgk');
+
+
+CREATE TABLE customers (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  user_id INT,
+  mobile VARCHAR(15),
+  address VARCHAR(200),
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE tailor_specializations (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  tailor_id INT,
+  specialization VARCHAR(50),
+  FOREIGN KEY (tailor_id) REFERENCES users(id)
+);
+
+CREATE TABLE measurements (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  customer_id INT,
+  length DECIMAL(5,2),
+  waist DECIMAL(5,2),
+  hip DECIMAL(5,2),
+  chest DECIMAL(5,2),
+  shoulder DECIMAL(5,2),
+  sleeve DECIMAL(5,2),
+  neck DECIMAL(5,2),
+  instructions TEXT,
+  FOREIGN KEY (customer_id) REFERENCES customers(id)
+);
+
+CREATE TABLE orders (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  customer_id INT,
+  measurement_id INT,
+  delivery_date DATE,
+  total_amount DECIMAL(10,2),
+  advance_amount DECIMAL(10,2),
+  balance_amount DECIMAL(10,2),
+  status ENUM('received','in_progress','completed','delivered') DEFAULT 'received',
+  created_at DATETIME DEFAULT NOW(),
+  
+  FOREIGN KEY (customer_id) REFERENCES customers(id),
+  FOREIGN KEY (measurement_id) REFERENCES measurements(id)
+);
+CREATE TABLE order_items (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  order_id INT,
+  item_type VARCHAR(50),     -- Pant, Shirt, Kurta etc.
+  tailor_id INT,             -- Which tailor will stitch this item
+  measurement_id INT,        -- Uses the customer measurement
+  stitch_amount DECIMAL(10,2),
+  status ENUM('received','cutting','stitching','trial','ready','delivered') DEFAULT 'received',
+  notes TEXT,
+
+  FOREIGN KEY (order_id) REFERENCES orders(id),
+  FOREIGN KEY (tailor_id) REFERENCES users(id),
+  FOREIGN KEY (measurement_id) REFERENCES measurements(id)
+);
+CREATE TABLE order_status_history (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  order_item_id INT,
+  status VARCHAR(50),
+  updated_by INT,
+  updated_at DATETIME DEFAULT NOW(),
+
+  FOREIGN KEY (order_item_id) REFERENCES order_items(id),
+  FOREIGN KEY (updated_by) REFERENCES users(id)
+);
+
+CREATE TABLE payments (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  order_id INT,
+  amount DECIMAL(10,2),
+  payment_type ENUM('advance','balance'),
+  paid_on DATETIME DEFAULT NOW(),
+
+  FOREIGN KEY (order_id) REFERENCES orders(id)
+);
+
+ALTER TABLE orders ADD COLUMN completed_at DATETIME NULL;
+

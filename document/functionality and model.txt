@@ -1,0 +1,49 @@
+🧑‍💼 1. User Types (Roles)
+A. Admin
+
+Creates tailor accounts
+Creates customer accounts
+Takes measurements from customers
+Creates orders on behalf of customers
+Assigns order to the correct tailor (based on specialization)
+Manages payment (advance + balance)
+Updates order status (if tailor tells them)
+Views all reports
+
+B. Tailor
+
+Receives assigned stitching orders
+Views cloth details + measurements + delivery date
+Updates stitching progress
+Sends “Completed” update to admin
+Can request extra charge (optional)
+
+C. Customer
+
+Comes with cloth
+Provides order details
+Checks order status
+Checks balance amount
+Gets message when order is completed
+
+Workflow (Start to End)
+STEP 1: Customer arrives
+Comes with cloth → gives item type → gives basic details.
+STEP 2: Admin takes measurement
+Directly in system → saves it.
+STEP 3: Admin creates order
+Selects customer
+Adds cloth details
+Adds measurements
+Adds stitching cost
+Collects advance
+STEP 4: System shows specialist tailors
+If order is pant → only pant specialists shown.
+STEP 5: Admin assigns tailor
+Tailor receives order.
+STEP 6: Tailor updates progress
+Cutting → Stitching → Ready → Completed
+STEP 7: Customer tracks online
+Sees live status, delivery date, balance.
+STEP 8: Delivery
+Customer pays balance → Admin closes order.
