@@ -11,9 +11,9 @@ The Smart Tailor System is a web-based application designed to help users get cu
 🧾 Admin panel for managing orders
 📊 Organized database management
 🛠️ Tech Stack
-Frontend: HTML, CSS, JavaScript / React (if used)
-Backend: Node.js / Python / PHP (mention what you used)
-Database: SQLite / PostgreSQL / MySQL
+Frontend: React
+Backend: Python Flask
+Database: MySQL
 Version Control: Git & GitHub
 📂 Project Structure
 smart-tailor-system/
